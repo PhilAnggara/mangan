@@ -1,0 +1,529 @@
+body {
+  background-color: #f0f0f0;
+}
+
+// Navbar
+.navbar-brand {
+  font-family: 'Viga', sans-serif;
+  font-size: 32px;
+}
+.navbar-alternate {
+  color: #17a2b8 !important;
+}
+.nav-search {
+  input {
+    box-shadow:  1px 1px 5px rgba(0, 0, 0, 0.2);
+    width: 300px !important;
+  }
+  button {
+    box-shadow:  1px 1px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+// End of navbar
+
+// Jumbotron
+.jumbotron {
+  background-image: url("../images/jumbotron-bg.jpg");
+  background-size: cover;
+  height: 350px;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+
+  form {
+    input {
+      width: 250px !important;
+    }
+  }
+
+  .display-4 {
+    font-family: 'Lobster', serif;
+    color: white;
+    margin-top: 30px;
+    font-size: 60px;
+  }
+  .lead {
+    font-family: 'Assistant', sans-serif;
+    color: white;
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 400;
+  }
+}
+// End of jumbotron
+
+// Menu
+.menu {
+  border-radius: 120px;
+  font-family: 'Assistant', sans-serif;
+
+  h5 {
+    font-weight: 600;
+    font-size: 22px;
+  }
+  p {
+    font-weight: 300;
+    font-size: 18px;
+  }
+
+  img {
+    height: 150px;
+    object-fit: cover;
+  }
+}
+// End of menu
+
+.favorit {
+  h2 {
+    font-size: 24px;
+    font-weight: 400;
+    span {
+      font-weight: 500;
+    }
+  }
+  h5 {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+// Footer
+footer {
+  font-family: 'Assistant', sans-serif;
+  .copyright {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+// End of footer
+
+// Gallery
+.gallery {
+  .xzoom-container {
+    display: block;
+    
+    .xzoom {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      box-shadow: none;
+    }
+  }
+  .xzoom-thumbs {
+    margin-top: 10px;
+    .xzoom-gallery {
+      width: 77px;
+      height: 77px;
+      object-fit: cover;
+    }
+  }
+}
+// End of gallery
+
+// Restaurant
+.restaurant {
+  h2 {
+    font-size: 24px;
+    font-weight: 400;
+  }
+  button, a {
+    font-size: 10px;
+  }
+  .nav-link {
+    font-size: 16px;
+  }
+  .ratings {
+    .product-rating {
+      font-size: 20px
+     }
+     .checked {
+       color: orange;
+     }
+  }
+
+  .aksi {
+    .btn-outline-warning:hover {
+      color: white;
+    }
+  }
+
+  .salin-link {
+    width: 270px;
+  }
+  .salin {
+    width: 38px;
+    height: 38px;
+  }
+  .pad-50 {
+    padding: 40px 0px 40px 0px;
+  }
+
+  .bot-left {
+    bottom: 0;
+    left: 0;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    z-index: 10000;
+  }
+
+  .ulasan {
+    img {
+      width: 35px;
+    }
+    h3 {
+      font-size: 16px;
+      margin-bottom: -5px;
+    }
+    span {
+      font-size: 10px;
+      color: #a1a1a1;
+      i {
+        font-size: 10px;
+      }
+    }
+    p {
+      font-size: 12px;
+      color: #444444;
+    }
+  }
+}
+// End of restaurant
+
+// Daftar
+.daftar {
+  .filter-col {
+    display: none;
+    .card {
+      position: sticky;
+      top: 20px;
+      h5 {
+        font-size: 14px;
+      }
+      .filter {
+        .form-check {
+          margin-top: 3px;
+          label {
+            font-size: 14px;
+          }
+          label:hover {
+            color: #17a2b8;
+          }
+          input:checked ~ label {
+            color: #17a2b8;
+            font-weight: 500;
+          }
+          input:checked ~ label:hover {
+            color: #17a2b8;
+          }
+        }
+      }
+    }
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 400;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  img {
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+  }
+  .map {
+    width: 220px;
+  }
+  .ratings {
+    i {
+      font-size: 10px;
+    }
+    .product-rating {
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .pengulas {
+      font-size: 10px;
+      font-weight: 500;
+      color: #363636;
+    }
+    .checked {
+      color: orange;
+    }
+    .alamat {
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+  }
+}
+// End of daftar
+
+// Login
+.login {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 120px;
+  .card {
+    border-radius: 18px;
+    height: 480px;
+    padding-top: 20px;
+    h3 {
+      font-family: 'Viga', serif;
+      color: #17a2b8;
+    }
+    form.log {
+      padding-top: 40px;
+      label {
+        font-size: 14px;
+        margin: 10px 0px 0px 0px;
+      }
+      .d-flex {
+        margin-top: 80px;
+        button, a {
+          width: 49%;
+        }
+      }
+    }
+    form.reg {
+      padding-top: 30px;
+      label {
+        font-size: 14px;
+        margin: 0px 0px 0px 0px;
+      }
+      button {
+        margin-top: 72px;
+      }
+    }
+  }
+}
+// End of login
+// Register
+.register {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 120px;
+  .card {
+    border-radius: 18px;
+    height: 480px;
+    padding-top: 20px;
+    h3 {
+      font-family: 'Viga', serif;
+      color: #17a2b8;
+    }
+    form.log {
+      label {
+        font-size: 14px;
+        margin: 1px 0px 0px 0px;
+      }
+      .d-flex {
+        margin-top: 40px;
+      }
+    }
+  }
+}
+// End of register
+
+// Animation
+.h-scale {
+  transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+}
+.h-scale:hover{
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.animate__dua {
+  --animate-delay: 5s;
+}
+// End of animation
+
+
+// 
+// 
+// 
+// DESKTOP VERSION
+// DESKTOP VERSION
+// DESKTOP VERSION
+// 
+// 
+// 
+@media (min-width: 992px) {
+
+  // D_Navbar
+  .navbar-brand {
+    color: white !important;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+  }
+  .navbar-alternate {
+    color: #17a2b8 !important;
+    // color: #007BFF !important;
+    text-shadow: none;
+  }
+
+  .nav-link {
+    text-transform: uppercase;
+  }
+
+  .tombol {
+    text-transform: uppercase;
+    border-radius: 40px;
+    color: white !important;
+  }
+  // End of D_Navbar
+
+  // D_Jumbotron
+  .jumbotron {
+    margin-top: -75px;
+    height: 420px;
+
+    form {
+      input {
+        width: 500px !important;
+        height: 45px;
+      }
+      button {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    .display-4 {
+      font-size: 80px;
+    }
+    .lead {
+      font-size: 35px;
+    }
+  }
+  // End of D_Jumbotron
+
+  // D_Container
+  .favorit {
+    h2 {
+      font-size: 30px;
+      font-weight: 400;
+      span {
+        font-weight: 500;
+      }
+    }
+    h5 {
+      font-size: 20px;
+    }
+  }
+  // End of D_Container
+
+  // D_Daftar
+  .daftar {
+    .filter-col {
+      display: block;
+    }
+    h2 {
+      font-size: 28px;
+    }
+    h3 {
+      font-size: 24px;
+    }
+    img {
+      width: 120px;
+      height: 120px;
+    }
+    .ratings {
+      i {
+        font-size: 14px;
+      }
+      .product-rating {
+        font-size: 16px;
+      }
+      .pengulas {
+        font-size: 14px;
+      }
+      .alamat {
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    }
+  }
+  // End of D_Daftar
+
+  // D_Footer
+  footer {
+    .copyright {
+      font-size: 16px;
+    }
+  }
+  // End of D_Footer
+
+  // D_Gallery
+  .gallery {
+    .xzoom-container {
+      .xzoom {
+        height: 410px;
+      }
+    }
+    .xzoom-thumbs {
+      margin-top: 0px;
+      .xzoom-gallery {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+  // End of D_Gallery
+
+  // D_Restaurant
+  .restaurant {
+    h2 {
+      font-size: 34px;
+      font-weight: 400;
+    }
+    button, a {
+      font-size: 14px;
+    }
+
+    .nav-link {
+      text-transform: none;
+    }
+    .ratings {
+      .product-rating {
+        font-size: 30px
+       }
+    }
+    .salin-link {
+      width: 400px;
+    }
+    .ulasan {
+      img {
+        width: 50px;
+      }
+      h3 {
+        font-size: 16px;
+        margin-bottom: -1px;
+      }
+      span {
+        font-size: 12px;
+        i {
+          font-size: 12px;
+        }
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+  // End of D_Restaurant
+
+  // D_Login
+  .login, .register {
+    padding-top: 70px;
+  }
+  // End of D_Login
+
+}
