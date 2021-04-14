@@ -12,7 +12,7 @@ class Restoran extends Model
     protected $table = 'restoran';
 
     protected $fillable = [
-        'nama_restoran'
+        'nama_restoran', 'alamat', 'lokasi', 'tentang'
     ];
 
 

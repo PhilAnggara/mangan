@@ -12,7 +12,7 @@ class Rating extends Model
     protected $table = 'rating';
 
     protected $fillable = [
-        'id_user'
+        'id_user', 'id_restoran', 'rating', 'ulasan'
     ];
 
 

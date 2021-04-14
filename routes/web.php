@@ -20,5 +20,3 @@ Route::get('/pencarian', 'ManganController@pencarian')->name('pencarian');
 Route::get('/restoran', 'ManganController@restoran')->name('restoran');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
