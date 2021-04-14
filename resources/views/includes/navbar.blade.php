@@ -12,8 +12,16 @@
         </button>
       </form>        
       <div class="navbar-nav ml-auto">
-        <a class="nav-link mr-4" href="#">Masuk</a>
-        <a class="nav-link" href="#">Daftar</a>
+        @guest
+          <a class="nav-link mr-4" href="{{ route('login') }}">Masuk</a>
+          <a class="nav-link" href="{{ url('register') }}">Daftar</a>
+        @endguest
+        @auth
+          <form action="{{ url('logout') }}" method="POST">
+            @csrf
+            <button class="btn nav-link" type="submit">Keluar</button>
+          </form>
+        @endauth
       </div>
     </div>
   </div>

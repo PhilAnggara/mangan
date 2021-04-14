@@ -12,11 +12,15 @@ class Restoran extends Model
     protected $table = 'restoran';
 
     protected $fillable = [
-        'nama_restoran', 'alamat', 'lokasi', 'tentang'
+        'nama_restoran', 'slug', 'alamat', 'petunjuk', 'lokasi', 'tentang'
     ];
 
 
     protected $hidden = [
         
     ];
+
+    public function rating(){
+        return $this->hasMany(Rating::class, 'id_restoran', 'id');
+    }
 }

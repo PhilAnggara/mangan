@@ -16,8 +16,10 @@ class CreateRestoranTable extends Migration
         Schema::create('restoran', function (Blueprint $table) {
             $table->id();
             $table->string('nama_restoran');
+            $table->string('slug');
             $table->string('alamat');
-            $table->string('lokasi');
+            $table->longText('petunjuk');
+            $table->longText('lokasi');
             $table->longText('tentang');
             $table->timestamps();
         });

@@ -19,4 +19,11 @@ class Rating extends Model
     protected $hidden = [
         
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+    public function resto(){
+        return $this->belongsTo(Restoran::class, 'id_restoran', 'id');
+    }
 }

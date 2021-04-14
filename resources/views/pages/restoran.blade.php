@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Restoran - Mangan')
+@section('title')
+  {{ $item->nama_restoran }} - Mangan
+@endsection
 
 @section('content')
 <div class="container">
@@ -37,24 +39,32 @@
   <section class="restaurant">
     <div class="row">
       <div class="col-sm-8 animate__animated animate__fadeInLeftBig animate__faster">
-        <h2>Warung Bunda & Bar</h2>
-        <p class="font-weight-bold text-secondary">Kombos</p>
+        <h2>{{ $item->nama_restoran }}</h2>
+        <p class="font-weight-bold text-secondary">{{ $item->alamat }}</p>
       </div>
       
       <!-- Rating -->
       <div class="col-sm-4">
         <div class="ratings text-center-sm">
           <span>
-            <i class="fa fa-star checked"></i>
-            <i class="fa fa-star checked"></i>
-            <i class="fa fa-star checked"></i>
-            <i class="fa fa-star checked"></i>
-            <i class="fa fa-star"></i>
+            <i class="fa fa-star{{ $rate >= 1 ? " checked" : "" }}"></i>
+            <i class="fa fa-star{{ $rate >= 2 ? " checked" : "" }}"></i>
+            <i class="fa fa-star{{ $rate >= 3 ? " checked" : "" }}"></i>
+            <i class="fa fa-star{{ $rate >= 4 ? " checked" : "" }}"></i>
+            <i class="fa fa-star{{ $rate >= 5 ? " checked" : "" }}"></i>
           </span>
-          <span class="product-rating ml-1">4.6</span>
+          <span class="product-rating ml-1">{{ number_format($rate,1) }}</span>
           <span>/5</span>
           <div>
-            <p><i class="border-bottom ml-1">135 Ulasan</i></p>
+            <p>
+              <i class="border-bottom ml-1">
+                @if ($item->rating->count() != 0)
+                  {{ $item->rating->count() }} Ulasan
+                @else
+                  Belum ada ulasan
+                @endif
+              </i>
+            </p>
           </div>
         </div>
     </div>
@@ -63,10 +73,18 @@
 
     <!-- Aksi -->
     <div class="aksi mt-3 mb-4">
-      <button class="btn btn-info my-2 my-sm-0 mr-1" type="button" data-toggle="modal" data-target="#tambahUlasanModal">
-        <i class="far fa-star"></i>
-        Tambah Ulasan
-      </button>
+      @auth
+        <button class="btn btn-info my-2 my-sm-0 mr-1" type="button" data-toggle="modal" data-target="#tambahUlasanModal">
+          <i class="far fa-star"></i>
+          Tambah Ulasan
+        </button>
+      @endauth
+      @guest
+        <a class="btn btn-info my-2 my-sm-0 mr-1" href="{{ route('login') }}">
+          <i class="far fa-star"></i>
+          Tambah Ulasan
+        </a>
+      @endguest
       <!-- Modal rating-->
       <div class="modal fade" id="tambahUlasanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="tambahUlasanModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -80,8 +98,12 @@
             <div class="modal-body">
               <form>                  
                 <div class="form-group text-center" id="rating-ability-wrapper">
-                  <label class="control-label" for="rating">
-                  <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
+                  <label class="control-label" for="rating">   
+                    @auth
+                      <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
+                      <input type="hidden" name="id_restoran" value="">
+                    @endauth
+                    <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
                   </label>
                   <h2 class="bold rating-header" style="margin-top: -35px;">
                     <span class="selected-rating">0</span><small> / 5</small>
@@ -116,14 +138,22 @@
       </div>
       <!-- End of modal rating -->
 
-      <a href="https://www.google.com/maps/dir//Warung+BUNDA,+Kairagi+Satu,+Kec.+Mapanget,+Kota+Manado,+Sulawesi+Utara/@1.5023361,124.8717037,199m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x32870ba153402383:0x535f96b750c52565!2m2!1d124.8716941!2d1.5023477?hl=id" target="_blank" class="btn btn-outline-info my-2 my-sm-0 mr-1">
+      <a href="{{ $item->petunjuk }}" target="_blank" class="btn btn-outline-info my-2 my-sm-0 mr-1">
         <i class="fas fa-directions"></i>
         Petunjuk
       </a>
-      <button class="btn btn-outline-info my-2 my-sm-0 mr-1 simpan" type="submit">
-        <i class="fas fa-bookmark"></i>
-        Arsip
-      </button>
+      @auth
+        <button class="btn btn-outline-info my-2 my-sm-0 mr-1 simpan" type="submit">
+          <i class="fas fa-bookmark"></i>
+          Arsip
+        </button>
+      @endauth
+      @guest
+        <a class="btn btn-outline-info my-2 my-sm-0 mr-1" href="{{ route('login') }}">
+          <i class="fas fa-bookmark"></i>
+          Arsip
+        </a>
+      @endguest
       <!-- Toast simpan -->
       <div class="toast toast-simpan position-fixed bot-left">
         <div class="toast-body bg-dark text-light">
@@ -187,7 +217,9 @@
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title mb-4">Tentang restoran ini</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, dicta! Facilis est dignissimos omnis adipisci laboriosam, veniam sapiente suscipit eveniet quidem alias consectetur quaerat minus nobis quasi necessitatibus expedita culpa similique labore ipsa fugit deleniti aut quibusdam animi. Molestiae velit distinctio perferendis impedit dolores totam rerum, nobis sint veritatis, eos doloribus nulla. Repellendus reprehenderit molestiae tempore facilis illum soluta, voluptatem optio hic, modi veritatis eos commodi iste nisi dolor delectus totam praesentium id eligendi asperiores! Doloremque dignissimos voluptate aut incidunt! Veritatis, tempora! Sapiente vero error amet corporis! Suscipit, aperiam exercitationem? Maxime iure quo voluptatum consectetur veritatis praesentium, cum vero laudantium.</p>
+                  <p class="card-text">
+                    {{ $item->tentang }}
+                  </p>
                 </div>
               </div>
               <!-- End of tentang -->
@@ -197,63 +229,30 @@
                 <!-- Ulasan -->
                 <div class="card-body">
                   <div class="ulasan">
-                    <div class="row">
-                      <div class="col-sm-4 mt-2">
-                        <img src="frontend/images/profile-picture.png" alt="" class="rounded-circle float-left mr-3">
-                        <h3>Phil Anggara</h3>
-                        <span>1 minggu lalu</span>
-                      </div>
-                      <div class="col-sm-8">
-                        <div class="ratings">
-                          <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star"></i>
-                          </span>
+                    @forelse ($item->rating as $rating)
+                      <div class="row">
+                        <div class="col-sm-4 mt-2">
+                          <img src="{{ url('frontend/images/profile-picture.png') }}" alt="" class="rounded-circle float-left mr-3">
+                          <h3>{{ $rating->user->name }}</h3>
+                          <span>{{ Carbon\Carbon::parse($rating->user->created_at)->diffForHumans() }}</span>
                         </div>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, nam fugiat. Harum alias quasi cumque.</p>
-                      </div>
-                    </div><hr>
-                    <div class="row">
-                      <div class="col-sm-4 mt-2">
-                        <img src="frontend/images/profile-picture.png" alt="" class="rounded-circle float-left mr-3">
-                        <h3>Angga Bawole</h3>
-                        <span>3 bulan lalu</span>
-                      </div>
-                      <div class="col-sm-8">
-                        <div class="ratings">
-                          <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                          </span>
+                        <div class="col-sm-8">
+                          <div class="ratings">
+                            <span>
+                              <i class="fa fa-star{{ $rating->rating >= 1 ? " checked" : "" }}"></i>
+                              <i class="fa fa-star{{ $rating->rating >= 2 ? " checked" : "" }}"></i>
+                              <i class="fa fa-star{{ $rating->rating >= 3 ? " checked" : "" }}"></i>
+                              <i class="fa fa-star{{ $rating->rating >= 4 ? " checked" : "" }}"></i>
+                              <i class="fa fa-star{{ $rating->rating >= 5 ? " checked" : "" }}"></i>
+                            </span>
+                          </div>
+                          <p>{{ $rating->ulasan }}</p>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id vitae eum totam?</p>
-                      </div>
-                    </div><hr>
-                    <div class="row">
-                      <div class="col-sm-4 mt-2">
-                        <img src="frontend/images/profile-picture.png" alt="" class="rounded-circle float-left mr-3">
-                        <h3>Phil Bawole</h3>
-                        <span>4 bulan lalu</span>
-                      </div>
-                      <div class="col-sm-8">
-                        <div class="ratings">
-                          <span>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star checked"></i>
-                            <i class="fa fa-star"></i>
-                          </span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus repudiandae cumque molestias ab nobis?</p>
-                      </div>
-                    </div><hr>
+                      </div><hr>
+                    @empty
+                      <p class="text-center font-weight-bold text-muted">Belum ada ulasan</p>
+                    @endforelse
+
                   </div>
                 </div>
                 <!-- End of ulasan -->
@@ -267,7 +266,7 @@
           <div class="card-body">
             <h5 class="card-title">Lokasi</h5>
             <div class="embed-responsive embed-responsive-1by1">
-              <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d997.1117106912757!2d124.87167150214444!3d1.5023387436760274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32870ba153402383%3A0x535f96b750c52565!2sWarung%20BUNDA!5e0!3m2!1sid!2sid!4v1617580937533!5m2!1sid!2sid"></iframe>
+              <iframe class="embed-responsive-item" src="{{ $item->lokasi }}"></iframe>
             </div>
           </div>
         </div>

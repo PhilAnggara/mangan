@@ -53,17 +53,17 @@
         <h2>Restoran favorit di <span class="ztext">Manado</span></h2>
       </div>
       <div class="row mt-3">
-        @for ($i = 0; $i < 15; $i++)
+        @foreach ($items as $item)
         <div class="col-sm-4 mt-4">
           <div class="card shadow h-scale">
             <div class="card-body">
-              <h5 class="float-left">Nama Restoran</h5>
+              <h5 class="float-left">{{ $item->nama_restoran }}</h5>
               <i class="fas fa-angle-right mt-2 float-right"></i>
-              <a href="{{ route('restoran') }}" class="stretched-link"></a>
+              <a href="{{ route('restoran', $item->slug) }}" class="stretched-link"></a>
             </div>
           </div>
         </div>
-        @endfor
+        @endforeach
       </div>
     </section>
     <!-- End of favorit-->

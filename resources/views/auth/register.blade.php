@@ -9,7 +9,8 @@
         <div class="card shadow">
           <div class="card-body">
             <h3 class="text-center">Register - Mangan</h3>
-            <form class="log">
+            <form class="log" method="POST" action="{{ route('register') }}">
+              @csrf
 
               <div class="form-group">
                 <label for="name">Nama</label>
@@ -25,7 +26,7 @@
 
               <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" autocomplete="off" required
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="off" required
                 oninvalid="this.setCustomValidity('Email belum sesuai')"
                 oninput="this.setCustomValidity('')">
                 @error('email')
@@ -37,7 +38,7 @@
 
               <div class="form-group">
                 <label for="password">Password</label>
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('email') }}" required
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required
                 oninvalid="this.setCustomValidity('Password belum dimasukan')"
                 oninput="this.setCustomValidity('')">
                 @error('password')

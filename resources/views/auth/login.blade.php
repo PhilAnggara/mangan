@@ -10,6 +10,7 @@
           <div class="card-body">
             <h3 class="text-center mb-4">Login - Mangan</h3>
             <form method="POST" action="{{ route('login') }}" class="log">
+              @csrf
 
               <div class="form-group">
                 <label for="email">Email</label>

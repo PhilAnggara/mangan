@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Restoran;
+
 use Illuminate\Http\Request;
 
 class ManganController extends Controller
 {
     public function index()
     {
-        return view('pages.mangan');
+        $items = Restoran::all();
+        
+        return view('pages.mangan', [
+            'items' => $items
+        ]);
     }
     
     // Temporary
     public function pencarian()
     {
         return view('pages.pencarian');
-    }
-    public function restoran()
-    {
-        return view('pages.restoran');
     }
 }
