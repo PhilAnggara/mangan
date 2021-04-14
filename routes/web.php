@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
+
+// Temporary
+Route::get('/pencarian', function () {
+    return view('pages.pencarian');
+})->name('pencarian');
+Route::get('/restoran', function () {
+    return view('pages.restoran');
+})->name('restoran');
