@@ -105,238 +105,52 @@
 
         <div class="col-md-9 pl-sm-1">
 
-          <div class="card mb-2">
-            <div class="card-body py-2 pl-4 shadow">
-              <div class="row">
-                <a href="{{ route('restoran') }}">
-                  <img data-tilt data-tilt-scale="1.05" class="rounded mr-3" src="{{ url('frontend/images/restaurant1.JPG') }}">
-                </a>
-                <div class="d-inline mt-sm-2">
-                  <a href="{{ route('restoran') }}">
-                    <h3>Nama Restoran</h3>
+          @forelse ($items as $item)
+            <div class="card mb-2">
+              <div class="card-body py-2 pl-4 shadow">
+                <div class="row">
+                  <a href="{{ route('restoran', $item->slug) }}">
+                    <img data-tilt data-tilt-scale="1.05" class="rounded mr-3" src="{{ url('frontend/images/restaurant1.JPG') }}">
                   </a>
-                  <div class="ratings text-center-sm">
-                    <span>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span class="product-rating ml-1">4.6</span>
-                    <span class="pengulas">(135 Ulasan)</span>
-                    <p class="alamat">Alamat Restoran</p>
+                  <div class="d-inline mt-sm-2">
+                    <a href="{{ route('restoran', $item->slug) }}">
+                      <h3>{{ $item->nama_restoran }}</h3>
+                    </a>
+                    <div class="ratings text-center-sm">
+                      <span>
+                        @php
+                          $total = $item->rating->sum('rating');
+                          
+                          if($item->rating->count() != 0)     
+                            $rate = $total / $item->rating->count();  
+                          else     
+                            $rate = 0;
+                        @endphp
+                        <i class="fa fa-star{{ $rate >= 1 ? " checked" : "" }}"></i>
+                        <i class="fa fa-star{{ $rate >= 2 ? " checked" : "" }}"></i>
+                        <i class="fa fa-star{{ $rate >= 3 ? " checked" : "" }}"></i>
+                        <i class="fa fa-star{{ $rate >= 4 ? " checked" : "" }}"></i>
+                        <i class="fa fa-star{{ $rate >= 5 ? " checked" : "" }}"></i>
+                      </span>
+                      <span class="product-rating ml-1">{{ number_format($rate,1) }}</span>
+                      <span class="pengulas">
+                        @if ($item->rating->count() != 0)
+                          ({{ $item->rating->count() }} Ulasan)
+                        @else
+                          (Belum ada ulasan)
+                        @endif
+                      </span>
+                      <p class="alamat">{{ $item->alamat }}</p>
+                    </div>
                   </div>
+                  <!-- <div class="d-inline mt-2 ml-5 bg-dark">
+                  </div> -->
                 </div>
-                <!-- <div class="d-inline mt-2 ml-5 bg-dark">
-                </div> -->
               </div>
             </div>
-          </div>
-
-          <div class="card mb-2">
-            <div class="card-body py-2 pl-4 shadow">
-              <div class="row">
-                <a href="{{ route('restoran') }}">
-                  <img data-tilt data-tilt-scale="1.05" class="rounded mr-3" src="{{ url('frontend/images/restaurant2.JPG') }}">
-                </a>
-                <div class="d-inline mt-2">
-                  <a href="{{ route('restoran') }}">
-                    <h3>Nama Restoran</h3>
-                  </a>
-                  <div class="ratings text-center-sm">
-                    <span>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span class="product-rating ml-1">4.6</span>
-                    <span class="pengulas">(135 Ulasan)</span>
-                    <p class="alamat">Alamat Restoran</p>
-                  </div>
-                </div>
-                <!-- <div class="d-inline mt-2 ml-5 bg-dark">
-                </div> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-2">
-            <div class="card-body py-2 pl-4 shadow">
-              <div class="row">
-                <a href="{{ route('restoran') }}">
-                  <img data-tilt data-tilt-scale="1.05" class="rounded mr-3" src="{{ url('frontend/images/restaurant3.JPG') }}">
-                </a>
-                <div class="d-inline mt-2">
-                  <a href="{{ route('restoran') }}">
-                    <h3>Nama Restoran</h3>
-                  </a>
-                  <div class="ratings text-center-sm">
-                    <span>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span class="product-rating ml-1">4.6</span>
-                    <span class="pengulas">(135 Ulasan)</span>
-                    <p class="alamat">Alamat Restoran</p>
-                  </div>
-                </div>
-                <!-- <div class="d-inline mt-2 ml-5 bg-dark">
-                </div> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-2">
-            <div class="card-body py-2 pl-4 shadow">
-              <div class="row">
-                <a href="{{ route('restoran') }}">
-                  <img data-tilt data-tilt-scale="1.05" class="rounded mr-3" src="{{ url('frontend/images/restaurant4.JPG') }}">
-                </a>
-                <div class="d-inline mt-2">
-                  <a href="{{ route('restoran') }}">
-                    <h3>Nama Restoran</h3>
-                  </a>
-                  <div class="ratings text-center-sm">
-                    <span>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span class="product-rating ml-1">4.6</span>
-                    <span class="pengulas">(135 Ulasan)</span>
-                    <p class="alamat">Alamat Restoran</p>
-                  </div>
-                </div>
-                <!-- <div class="d-inline mt-2 ml-5 bg-dark">
-                </div> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-2">
-            <div class="card-body py-2 pl-4 shadow">
-              <div class="row">
-                <a href="{{ route('restoran') }}">
-                  <img data-tilt data-tilt-scale="1.05" class="rounded mr-3" src="{{ url('frontend/images/restaurant1.JPG') }}">
-                </a>
-                <div class="d-inline mt-2">
-                  <a href="{{ route('restoran') }}">
-                    <h3>Nama Restoran</h3>
-                  </a>
-                  <div class="ratings text-center-sm">
-                    <span>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span class="product-rating ml-1">4.6</span>
-                    <span class="pengulas">(135 Ulasan)</span>
-                    <p class="alamat">Alamat Restoran</p>
-                  </div>
-                </div>
-                <!-- <div class="d-inline mt-2 ml-5 bg-dark">
-                </div> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-2">
-            <div class="card-body py-2 pl-4 shadow">
-              <div class="row">
-                <a href="{{ route('restoran') }}">
-                  <img data-tilt data-tilt-scale="1.05" class="rounded mr-3" src="{{ url('frontend/images/restaurant2.JPG') }}">
-                </a>
-                <div class="d-inline mt-2">
-                  <a href="{{ route('restoran') }}">
-                    <h3>Nama Restoran</h3>
-                  </a>
-                  <div class="ratings text-center-sm">
-                    <span>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span class="product-rating ml-1">4.6</span>
-                    <span class="pengulas">(135 Ulasan)</span>
-                    <p class="alamat">Alamat Restoran</p>
-                  </div>
-                </div>
-                <!-- <div class="d-inline mt-2 ml-5 bg-dark">
-                </div> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-2">
-            <div class="card-body py-2 pl-4 shadow">
-              <div class="row">
-                <a href="{{ route('restoran') }}">
-                  <img data-tilt data-tilt-scale="1.05" class="rounded mr-3" src="{{ url('frontend/images/restaurant3.JPG') }}">
-                </a>
-                <div class="d-inline mt-2">
-                  <a href="{{ route('restoran') }}">
-                    <h3>Nama Restoran</h3>
-                  </a>
-                  <div class="ratings text-center-sm">
-                    <span>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span class="product-rating ml-1">4.6</span>
-                    <span class="pengulas">(135 Ulasan)</span>
-                    <p class="alamat">Alamat Restoran</p>
-                  </div>
-                </div>
-                <!-- <div class="d-inline mt-2 ml-5 bg-dark">
-                </div> -->
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-2">
-            <div class="card-body py-2 pl-4 shadow">
-              <div class="row">
-                <a href="{{ route('restoran') }}">
-                  <img data-tilt data-tilt-scale="1.05" class="rounded mr-3" src="{{ url('frontend/images/restaurant4.JPG') }}">
-                </a>
-                <div class="d-inline mt-2">
-                  <a href="{{ route('restoran') }}">
-                    <h3>Nama Restoran</h3>
-                  </a>
-                  <div class="ratings text-center-sm">
-                    <span>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star checked"></i>
-                      <i class="fa fa-star"></i>
-                    </span>
-                    <span class="product-rating ml-1">4.6</span>
-                    <span class="pengulas">(135 Ulasan)</span>
-                    <p class="alamat">Alamat Restoran</p>
-                  </div>
-                </div>
-                <!-- <div class="d-inline mt-2 ml-5 bg-dark">
-                </div> -->
-              </div>
-            </div>
-          </div>
-
+          @empty
+            <h3>Tidak ada hasil ditemukan</h3>
+          @endforelse
         </div>
       </div>
     </div>

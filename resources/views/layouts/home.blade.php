@@ -28,12 +28,12 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Pilih tombol "Keluar" di bawah jika anda siap untuk mengakhiri sesi Anda saat ini.</div>
+        <div class="modal-body">Tekan tombol "Keluar" untuk mengakhiri sesi saat ini.</div>
         <div class="modal-footer">
           <form action="{{ url('logout') }}" method="POST">
             @csrf
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Batalkan</button>
-            <button class="btn btn-primary" type="submit">Keluar</button>
+            <button class="btn btn-info" type="submit">Keluar</button>
           </form>
         </div>
       </div>

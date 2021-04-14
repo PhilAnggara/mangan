@@ -17,10 +17,6 @@
           <a class="nav-link" href="{{ url('register') }}">Daftar</a>
         @endguest
         @auth
-          {{-- <form action="{{ url('logout') }}" method="POST">
-            @csrf
-            <button class="btn nav-link" type="submit">Keluar</button>
-          </form> --}}
           <button type="button" class="btn nav-link" data-toggle="modal" data-target="#logoutModal">
             Keluar
           </button>

@@ -191,7 +191,7 @@
             <div class="modal-body pad-50">
               <div class="row justify-content-center">
                 <form class="form-inline">
-                  <input type="text" class="form-control mb-2 mr-sm-2 bg-light salin-link" value="https://philanggara.github.io/mangan-template/restoran.html" readonly>
+                  <input type="text" class="form-control mb-2 mr-sm-2 bg-light salin-link" value="{{ route('restoran', $item->slug) }}" readonly>
                   <button type="button" class="btn btn-dark mb-2 salin"><i class="far fa-clone"></i></button>
                 </form>
               </div>

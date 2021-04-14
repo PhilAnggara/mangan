@@ -20,6 +20,10 @@ class ManganController extends Controller
     // Temporary
     public function pencarian()
     {
-        return view('pages.pencarian');
+        $items = Restoran::all();
+        
+        return view('pages.pencarian', [
+            'items' => $items
+        ]);
     }
 }
