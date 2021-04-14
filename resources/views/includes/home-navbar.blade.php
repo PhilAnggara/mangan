@@ -11,10 +11,13 @@
           <a class="nav-item nav-link btn btn-primary text-white tombol mr-2 px-3 mt-2" href="{{ route('register') }}">Daftar</a>          
         @endguest
         @auth
-          <form action="{{ url('logout') }}" method="POST">
+          {{-- <form action="{{ url('logout') }}" method="POST">
             @csrf
             <button class="nav-item nav-link btn btn-outline-primary tombol px-3 mt-2" type="submit">Keluar</button>
-          </form>
+          </form> --}}
+          <button type="button" class="nav-item nav-link btn btn-outline-primary tombol px-3 mt-2" data-toggle="modal" data-target="#logoutModal">
+            Keluar
+          </button>
         @endauth
       </div>
     </div>

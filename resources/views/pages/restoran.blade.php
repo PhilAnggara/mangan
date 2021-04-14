@@ -89,21 +89,23 @@
       <div class="modal fade" id="tambahUlasanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="tambahUlasanModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="tambahUlasanModalLabel">Tambah ulasan</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>                  
+            <form action="" method="POST">
+              @csrf
+              <div class="modal-header">
+                <h5 class="modal-title" id="tambahUlasanModalLabel">Tambah ulasan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{-- <form action="" method="POST"> --}}
                 <div class="form-group text-center" id="rating-ability-wrapper">
                   <label class="control-label" for="rating">   
                     @auth
                       <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
-                      <input type="hidden" name="id_restoran" value="">
+                      <input type="hidden" name="id_restoran" value="{{ $item->id }}">
                     @endauth
-                    <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
+                    <input type="hidden" id="selected_rating" name="rating" value="" required="required">
                   </label>
                   <h2 class="bold rating-header" style="margin-top: -35px;">
                     <span class="selected-rating">0</span><small> / 5</small>
@@ -127,12 +129,13 @@
                 <div class="form-group">
                   <textarea class="form-control" placeholder="Ulasan anda" id="ulasan" rows="2"></textarea>
                 </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
-              <button type="button" class="btn btn-primary">Kirim</button>
-            </div>
+                {{-- </form> --}}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
+                <button type="submit" class="btn btn-primary">Kirim</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -229,6 +232,7 @@
                 <!-- Ulasan -->
                 <div class="card-body">
                   <div class="ulasan">
+
                     @forelse ($item->rating as $rating)
                       <div class="row">
                         <div class="col-sm-4 mt-2">

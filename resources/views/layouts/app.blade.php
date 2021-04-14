@@ -18,6 +18,29 @@
   @yield('content')
   @include('includes.footer')
 
+  <!-- Logout modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Anda Ingin Keluar?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Pilih tombol "Keluar" di bawah jika anda siap untuk mengakhiri sesi Anda saat ini.</div>
+        <div class="modal-footer">
+          <form action="{{ url('logout') }}" method="POST">
+            @csrf
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batalkan</button>
+            <button class="btn btn-primary" type="submit">Keluar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of logout moadl -->
+
   @stack('prepend-script')
   @include('includes.script')
   @stack('addon-script')
