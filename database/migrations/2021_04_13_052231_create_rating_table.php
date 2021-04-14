@@ -15,10 +15,10 @@ class CreateRatingTable extends Migration
     {
         Schema::create('rating', function (Blueprint $table) {
             $table->id();
-            $table->id();
-            $table->id();
-            $table->id();
-            $table->id();
+            $table->foreignId('id_user');
+            $table->foreignId('id_restoran');
+            $table->integer('rating');
+            $table->string('ulasan');
             $table->timestamps();
         });
     }
