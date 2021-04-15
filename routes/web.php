@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'ManganController@index')->name('home');
 Route::get('/restoran/{slug}', 'RestoranController@index')->name('restoran');
-
-// Temporary
 Route::get('/pencarian', 'ManganController@pencarian')->name('pencarian');
+Route::post('/rating/store/', 'ManganController@store')->name('store');
 
 Auth::routes();

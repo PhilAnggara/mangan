@@ -89,7 +89,7 @@
       <div class="modal fade" id="tambahUlasanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="tambahUlasanModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <form action="" method="POST">
+            <form action="{{ route('store') }}" method="POST">
               @csrf
               <div class="modal-header">
                 <h5 class="modal-title" id="tambahUlasanModalLabel">Tambah ulasan</h5>
@@ -105,7 +105,7 @@
                       <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
                       <input type="hidden" name="id_restoran" value="{{ $item->id }}">
                     @endauth
-                    <input type="hidden" id="selected_rating" name="rating" value="" required="required">
+                    <input type="hidden" id="selected_rating" name="rating" value="0" required>
                   </label>
                   <h2 class="bold rating-header" style="margin-top: -35px;">
                     <span class="selected-rating">0</span><small> / 5</small>
@@ -127,7 +127,7 @@
                   </button>
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control" placeholder="Ulasan anda" id="ulasan" rows="2"></textarea>
+                  <textarea name="ulasan" class="form-control" placeholder="Ulasan anda" id="ulasan" rows="2"></textarea>
                 </div>
                 {{-- </form> --}}
               </div>
