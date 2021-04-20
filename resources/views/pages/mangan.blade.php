@@ -9,7 +9,7 @@
       <p class="lead animate__animated animate__fadeInUp animate__dua">Temukan makanan & minuman terbaik di Manado</p>
       <div class="row justify-content-center animate__animated animate__fadeInUp">
         <form class="form-inline" action="{{ route('pencarian') }}">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search" autofocus>
+          <input name="search" class="form-control" type="search" placeholder="Search" aria-label="Search" autofocus autocomplete="off">
           <button class="btn btn-info my-2 my-sm-0" type="submit">
             <i class="fas fa-search"></i>
           </button>

@@ -89,7 +89,7 @@
       <div class="modal fade" id="tambahUlasanModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="tambahUlasanModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <form action="{{ route('store') }}" method="POST">
+            <form action="{{ route('kirim-ulasan') }}" method="POST">
               @csrf
               <div class="modal-header">
                 <h5 class="modal-title" id="tambahUlasanModalLabel">Tambah ulasan</h5>
@@ -238,7 +238,7 @@
                         <div class="col-sm-4 mt-2">
                           <img src="{{ url('frontend/images/profile-picture.png') }}" alt="" class="rounded-circle float-left mr-3">
                           <h3>{{ $rating->user->name }}</h3>
-                          <span>{{ Carbon\Carbon::parse($rating->user->created_at)->diffForHumans() }}</span>
+                          <span>{{ Carbon\Carbon::parse($rating->created_at)->diffForHumans() }}</span>
                         </div>
                         <div class="col-sm-8">
                           <div class="ratings">

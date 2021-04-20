@@ -8,7 +8,15 @@
 
     <!-- Daftar Pencarian -->
     <div class="daftar mt-4">
-      <h2>Restoran di Manado</h2>
+      <h2>
+        @if ($keyword)
+          @if ($items->isNotEmpty())
+            Menampilkan hasil untuk <b>'{{ $keyword }}'</b>
+          @endif
+        @else
+          Restoran di Manado
+        @endif
+      </h2>
       <div class="row mt-4">
 
         <!-- Filter -->
@@ -143,13 +151,11 @@
                       <p class="alamat">{{ $item->alamat }}</p>
                     </div>
                   </div>
-                  <!-- <div class="d-inline mt-2 ml-5 bg-dark">
-                  </div> -->
                 </div>
               </div>
             </div>
           @empty
-            <h3>Tidak ada hasil ditemukan</h3>
+            <h3 class="text-center mt-5">Tidak menemukan hasil untuk <b>'{{ $keyword }}'</b></h3>
           @endforelse
         </div>
       </div>

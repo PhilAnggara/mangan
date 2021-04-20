@@ -5,8 +5,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <form class="form-inline nav-search">
-        <input class="form-control ml-sm-5" type="search" placeholder="Search" aria-label="Search">
+      <form class="form-inline nav-search" action="{{ route('pencarian') }}">
+        <input name="search" class="form-control ml-sm-5" type="search" placeholder="Search" aria-label="Search" autocomplete="off" value="{{ Request::is('pencarian') ? $keyword : '' }}">
         <button class="btn btn-info my-2 my-sm-0" type="submit">
           <i class="fas fa-search"></i>
         </button>
@@ -17,7 +17,7 @@
           <a class="nav-link" href="{{ url('register') }}">Daftar</a>
         @endguest
         @auth
-          <button type="button" class="btn nav-link" data-toggle="modal" data-target="#logoutModal">
+          <button type="button" class="btn nav-link text-left" data-toggle="modal" data-target="#logoutModal">
             Keluar
           </button>
         @endauth

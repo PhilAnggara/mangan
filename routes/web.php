@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'ManganController@index')->name('home');
 Route::get('/restoran/{slug}', 'RestoranController@index')->name('restoran');
 Route::get('/pencarian', 'ManganController@pencarian')->name('pencarian');
-Route::post('/rating/store/', 'ManganController@store')->name('store');
+Route::post('/rating/store/', 'ManganController@storeRating')->name('kirim-ulasan');
 
 Auth::routes();
