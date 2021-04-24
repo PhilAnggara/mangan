@@ -51,11 +51,7 @@ class ManganController extends Controller
             $avg = $request->rating;
 
         // Σ n.f / Σ n
-        $score = $total / 15;
 
-        $restoran->score = $score;
-
-        // Test
         $f1 = $restoran->rating->where('rating', '1');
         $f2 = $restoran->rating->where('rating', '2');
         $f3 = $restoran->rating->where('rating', '3');
@@ -63,26 +59,27 @@ class ManganController extends Controller
         $f5 = $restoran->rating->where('rating', '5');
         
         if ($f1) {
-            $f1 = $f1->sum('rating');
+            $fn1 = $f1->sum('rating');
         }
         if ($f2) {
-            $f2 = $f2->sum('rating');
+            $fn2 = $f2->sum('rating');
         }
         if ($f3) {
-            $f3 = $f3->sum('rating');
+            $fn3 = $f3->sum('rating');
         }
         if ($f4) {
-            $f4 = $f4->sum('rating');
+            $fn4 = $f4->sum('rating');
         }
         if ($f5) {
-            $f5 = $f5->sum('rating');
+            $fn5 = $f5->sum('rating');
         }
 
-        $Σfn = $f1 + $f2 + $f3 + $f4 + $f5;
-        $Σn = 15;
+        $Σfn = $fn1 + $fn2 + $fn3 + $fn4 + $fn5;
+        $Σn = collect([1, 2, 3, 4, 5])->sum();
         
-        $scor = $Σfn / $Σn;
-        // End of Test
+        $score = $Σfn / $Σn;
+        $restoran->score = $score;
+        
         $restoran->save();
         
         return redirect()->back();
